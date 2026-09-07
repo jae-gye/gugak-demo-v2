@@ -7,7 +7,7 @@ Listening demo for the ISMIR 2026 Late-Breaking Demo — static page, served fro
 - Model: exp003.0 BS-RoFormer, epoch 59
 - Checkpoint: `experiments/exp003.0_260809_bsroformer_pilot/checkpoints/model_bs_roformer_ep_59_si_sdr_10.7013.ckpt`
 - Render date: 2026-08-31
-- Built: 2026-09-07T04:41:58+00:00 from `gugak-stem-separation` commit `2058d26-dirty`
+- Built: 2026-09-07T05:48:47+00:00 from `gugak-stem-separation` commit `2058d26-dirty`
 - Items: 18 (genre 7, real_world 7, master_gap 4)
 - Audible-stem gate: predicted-stem RMS over the window > -50.0 dBFS; silent stems are not shipped
 - Encoding: MP3 via libsndfile, compression_level 0.4
@@ -49,7 +49,7 @@ sections:
   genre:
     - {id: pansori_0641,      source: 0641_민속악_판소리}
     - {id: sanjo_0321,        source: 0321_민속악_산조}
-    - {id: contemporary_0919, source: 0919_창작국악_창작국악}
+    - {id: contemporary_0831, source: 0831_창작국악_창작국악}
     - {id: pungnyu_0117,      source: 0117_정악_풍류음악}
     - {id: minyo_0761,        source: 0761_민속악_민요}
     - {id: court_0173,        source: 0173_정악_궁중음악}
@@ -66,7 +66,7 @@ sections:
 
   master_gap:
     - {id: gap_sanjo_0321,        source: 0321_민속악_산조}
-    - {id: gap_contemporary_0919, source: 0919_창작국악_창작국악}
+    - {id: gap_contemporary_0831, source: 0831_창작국악_창작국악}
     - {id: gap_pansori_0641,      source: 0641_민속악_판소리}
     - {id: gap_minyo_0761,        source: 0761_민속악_민요}
 ```
