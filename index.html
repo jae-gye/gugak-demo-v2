@@ -19,6 +19,8 @@
   main { max-width: 1100px; margin: 0 auto; padding: 28px 16px 64px; }
   header h1 { font-size: 1.45rem; line-height: 1.25; margin: 0 0 6px; }
   header .authors { margin: 0; color: var(--muted); }
+  header .credit { font-size: 0.92rem; margin-top: 4px; }
+  header .credit a { color: inherit; }
   section { margin-top: 36px; }
   section h2 { font-size: 1.15rem; margin: 0 0 2px; }
   section .blurb { margin: 0 0 14px; color: var(--muted); font-size: 0.95rem; }
@@ -201,7 +203,10 @@
   const page = data.meta.page;
   document.getElementById('header').append(
     el('h1', {}, page.title),
-    el('p', { class: 'authors' }, `${page.authors} · ${page.venue}`));
+    el('p', { class: 'authors' }, `${page.authors} · ${page.venue}`),
+    el('p', { class: 'authors credit' }, 'Audio player: ',
+      el('a', { href: 'https://github.com/audiolabs/trackswitch.js' }, 'trackswitch.js'),
+      ' (Werner, Balke, Stöter, Müller and Edler, 2017)'));
 
   const sectionsRoot = document.getElementById('sections');
   for (const section of data.sections) {
