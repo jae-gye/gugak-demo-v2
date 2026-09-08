@@ -160,7 +160,6 @@
       if (primary) return primary;
       const two = item.variants.length === 2;
       if (item.stems.length === 0) body.append(el('p', { class: 'hint' }, 'no stem above the audibility gate — input only'));
-      body.append(el('p', { class: 'hint' }, 'Toggle tracks while playing: the input starts on, stems start off; everything shares one playhead.'));
       if (two) {
         const pair = el('div', { class: 'pair' });
         body.append(pair);

@@ -7,8 +7,8 @@ Listening demo for the ISMIR 2026 Late-Breaking Demo — static page, served fro
 - Model: exp003.0 BS-RoFormer, epoch 59
 - Checkpoint: `experiments/exp003.0_260809_bsroformer_pilot/checkpoints/model_bs_roformer_ep_59_si_sdr_10.7013.ckpt`
 - Render date: 2026-08-31
-- Built: 2026-09-08T03:55:27+00:00 from `gugak-stem-separation` commit `2058d26-dirty`
-- Items: 15 (genre 7, master_gap 4, real_world 4)
+- Built: 2026-09-08T04:27:45+00:00 from `gugak-stem-separation` commit `2058d26-dirty`
+- Items: 15 (genre 7, real_world 4, master_gap 4)
 - Audible-stem gate: predicted-stem RMS over the window > -50.0 dBFS; silent stems are not shipped
 - Encoding: MP3 via libsndfile, compression_level 0.4
 - Scores: SI-SDR per song, mean over present classes; the master-input score uses the lag-aligned rows
