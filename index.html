@@ -31,6 +31,7 @@
   .title .genre { color: var(--muted); }
   .title .scores { color: var(--muted); font-size: 0.9rem; font-variant-numeric: tabular-nums; }
   .title .note { color: var(--muted); font-size: 0.88rem; }
+  .title .note a { color: inherit; }
   button.icon { width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--line); background: var(--panel);
                 color: var(--fg); cursor: pointer; font-size: 14px; line-height: 1; padding: 0; }
   button.icon:hover, button.icon:focus-visible { border-color: var(--accent); color: var(--accent); outline: none; }
@@ -89,10 +90,7 @@
     const tracks = [{ title: `${variant.label} (input)`, solo: true,
                       sources: [{ src: variant.input.audio, type: 'audio/mpeg' }] }];
     for (const slug of item.stems) {
-      // stem level over the excerpt, so a near-empty stem announces itself before you click it
-      const level = variant.stem_rms_dbfs && variant.stem_rms_dbfs[slug];
-      const title = level === undefined ? stemTitle(slug) : `${stemTitle(slug)} · ${level.toFixed(0)} dB`;
-      tracks.push({ title, sources: [{ src: variant.stems[slug].audio, type: 'audio/mpeg' }] });
+      tracks.push({ title: stemTitle(slug), sources: [{ src: variant.stems[slug].audio, type: 'audio/mpeg' }] });
     }
     return {
       features: { exclusiveSolo: false, muteOtherPlayerInstances: true, keyboard: true, seekBar: true,
@@ -143,7 +141,8 @@
     const title = el('div', { class: 'title' },
       el('div', {}, el('span', { class: 'name' }, item.title), item.genre ? el('span', { class: 'genre' }, ` (${item.genre})`) : null),
       item.scores ? el('div', { class: 'scores' }, scoreText(item)) : null,
-      item.note ? el('div', { class: 'note' }, item.note) : null);
+      item.note ? el('div', { class: 'note' }, item.note) : null,
+      item.url ? el('div', { class: 'note' }, el('a', { href: item.url, target: '_blank', rel: 'noopener' }, 'source: YouTube ↗')) : null);
     const canvas = el('canvas');
     const time = el('span', { class: 'time' }, `0:00 / ${fmtTime(item.window.length_s)}`);
     const preview = el('div', { class: 'preview', title: 'seek' }, canvas, time);
