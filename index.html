@@ -89,7 +89,10 @@
     const tracks = [{ title: `${variant.label} (input)`, solo: true,
                       sources: [{ src: variant.input.audio, type: 'audio/mpeg' }] }];
     for (const slug of item.stems) {
-      tracks.push({ title: stemTitle(slug), sources: [{ src: variant.stems[slug].audio, type: 'audio/mpeg' }] });
+      // stem level over the excerpt, so a near-empty stem announces itself before you click it
+      const level = variant.stem_rms_dbfs && variant.stem_rms_dbfs[slug];
+      const title = level === undefined ? stemTitle(slug) : `${stemTitle(slug)} · ${level.toFixed(0)} dB`;
+      tracks.push({ title, sources: [{ src: variant.stems[slug].audio, type: 'audio/mpeg' }] });
     }
     return {
       features: { exclusiveSolo: false, muteOtherPlayerInstances: true, keyboard: true, seekBar: true,
