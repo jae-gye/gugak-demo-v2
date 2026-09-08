@@ -79,8 +79,9 @@
   };
   const cssVar = name => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
   const fmtTime = s => `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, '0')}`;
-  const scoreText = item => Object.entries(item.scores).filter(([, s]) => s)
-    .map(([key, s]) => `${data.meta.variant_labels[key]} input ${s.si_sdr_db.toFixed(1)} dB`).join(' · ');
+  // one score per input variant the panel actually plays (test split: sum-stem only; master split: both)
+  const scoreText = item => item.variants.map(v => item.scores[v.key])
+    .map((s, i) => s ? `${item.variants[i].label} input ${s.si_sdr_db.toFixed(1)} dB` : null).filter(Boolean).join(' · ');
   const stemTitle = slug => `${classBySlug[slug].en} (${classBySlug[slug].ko})`;
 
   // ---------------------------------------------------------------- trackswitch players
@@ -153,7 +154,7 @@
     fetch(item.variants[0].input.peaks).then(r => r.json()).then(p => { peaks = p; drawPreview(canvas, peaks, 0); });
     window.addEventListener('resize', () => { if (peaks) drawPreview(canvas, peaks, lastProgress); });
 
-    // the primary controller drives the header: first variant (Σstem mix, or the recording)
+    // the primary controller drives the header: first variant (sum-stem mix, or the recording)
     let primary = null, lastProgress = 0;
     const mountBody = () => {
       if (primary) return primary;
